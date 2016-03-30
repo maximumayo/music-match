@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    shuffle();
     $(".card").click(function () {
         //console.log("clicked");
         card_clicked(this);
@@ -6,11 +7,13 @@ $(document).ready(function () {
     // reset button
     $('.reset').click(function () {
         //console.log("Reset button clicked");
+        shuffle();
         games_played++;
         $(".win").hide();
         reset_stats();
         display_stats();
         $('.card').find('.back').show();
+        //console.log(random_face);
     });
 });
 
@@ -22,6 +25,43 @@ var can_click = true; // flag variable
 var attempts = 0;
 var accuracy = 0;
 var games_played = 0;
+// declare array of card faces
+var card_faces = [
+    "images/acoustic01.jpg",
+    "images/harmonica01.jpg",
+    //"images/piano01.png",
+    //"images/strat01.jpg",
+    //"images/sax01.jpg",
+    //"images/drum01.jpg",
+    //"images/lespaul01.jpg",
+    //"images/trumpet01.jpg",
+    //"images/violin01.jpg",
+    "images/acoustic01.jpg",
+    "images/harmonica01.jpg",
+    //"images/piano01.png",
+    //"images/strat01.jpg",
+    //"images/sax01.jpg",
+    //"images/drum01.jpg",
+    //"images/lespaul01.jpg",
+    //"images/trumpet01.jpg",
+    //"images/violin01.jpg"
+];
+
+var random_face = [];
+var card_faces_length = card_faces.length;
+//random shuffle of card faces
+function shuffle() {
+    for (var i = 0; i < card_faces_length; i++) {
+        var current_length = card_faces.length;
+        var num = Math.floor(Math.random() * current_length);
+        var temp = (card_faces.splice(num, 1));
+        random_face.push(temp[0]);
+    }
+    console.log(random_face);
+    for (var j = 0; j < random_face.length; j++) {
+        $('.card:nth-child(' + (j + 1) + ')').prepend('<div class="front"><img src="' + random_face[j] + '"></div>');
+    }
+}
 
 //card clicked function will show face, check if first_card_clicked is null
 function card_clicked(element) {
