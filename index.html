@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Match</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+<div class="main_container">
+
+    <!--This is the header-->
+
+    <header class="jumbotron">
+        <h2 class="title">Music Match</h2>
+        <a href="about.html"><img src="images/logo.png" alt="eighth_notes"></a>
+    </header>
+
+    <div class="row">
+        <div class="stats col-xs-2">
+            <div class="stat_text">
+                <div class="games_played">
+                    <h3 class="label">Games Played:</h3>
+                    <h4 class="value"></h4>
+                </div>
+                <div class="attempts">
+                    <h3 class="label">Attempts:</h3>
+                    <h4 class="value"></h4>
+                </div>
+                <div class="accuracy">
+                    <h3 class="label">Accuracy:</h3>
+                    <h4 class="value"></h4>
+                </div>
+                <button class="reset btn-large btn-danger">Reset Game</button>
+            </div>
+        </div>
+
+        <!--This is the game area - where the cards will be-->
+
+        <div id="game-area" class="col-xs-9">
+
+            <!--cards 1-6-->
+
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/acoustic01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/harmonica01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/piano01.png" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/harmonica01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/strat01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/sax01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+
+            <!--cards 7-12-->
+
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/drum01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/lespaul01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/trumpet01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/lespaul01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/violin01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/piano01.png" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+
+            <!--cards 13-18-->
+
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/strat01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/acoustic01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/sax01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/drum01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/trumpet01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <div class="col-xs-2 card">
+                <div class="front"><img src="images/violin01.jpg" alt=""></div>
+                <div class="back"><img src="images/card_back.png" alt=""></div>
+            </div>
+            <h1 class="win">You Won!</h1>
+        </div>
+    </div>
+</div>
+</body>
+</html>
