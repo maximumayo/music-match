@@ -96,7 +96,7 @@ function card_clicked(element) {
                 first_card_clicked = null;
                 second_card_clicked = null;
                 can_click = true; // setting flag variable
-            }, 2000);
+            }, 600);
         }
     }
 }
