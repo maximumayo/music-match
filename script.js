@@ -57,7 +57,6 @@ function shuffle() {
         var temp = (card_faces.splice(num, 1));
         random_face.push(temp[0]);
     }
-    console.log(random_face);
     for (var j = 0; j < random_face.length; j++) {
         $('.card:nth-child(' + (j + 1) + ')').prepend('<div class="front"><img src="' + random_face[j] + '"></div>');
     }
