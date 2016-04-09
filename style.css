@@ -150,31 +150,3 @@ a:hover {
 .stat_text {
     text-align: center;
 }
-
-/*card flip animation*/
-/*.card*/
-
-/*.front{*/
-    /*!*position:absolute;*!*/
-    /*transform: rotateY( 180deg );*/
-    /*!*backface-visibility: hidden;*!*/
-    /*transition: transform .5s linear 0s;*/
-/*}*/
-/*.backflip{*/
-    /*!*position:absolute;*!*/
-    /*transform: rotateY( 180deg );*/
-    /*!*backface-visibility: hidden;*!*/
-    /*transition: transform .5s linear 0s;*/
-/*}*/
-
-/*.card on click > .front{*/
-    /*transform: perspective( 600px ) rotateY( -180deg );*/
-/*}*/
-/*.card on click > .back{*/
-    /*transform: perspective( 600px ) rotateY( 0deg );*/
-/*}*/
-
-.flip {
-    transform: perspective( 600px ) rotateY( 0deg );
-    backface-visibility: hidden;
-}
