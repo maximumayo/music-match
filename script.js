@@ -1,9 +1,9 @@
 $(document).ready(function () {
     shuffle();
+
     $(".card").click(function () {
         card_clicked(this);
     });
-
     //reset button
     $('.reset').click(function () {
         remove_shuffle();
@@ -13,8 +13,16 @@ $(document).ready(function () {
         reset_stats();
         display_stats();
         $('.card').find('.back').show();
+        game_music.pause();
+        game_music.currentTime = 0;
+        win_sound.pause();
+        win_sound.currentTime = 0;
     });
 });
+//sound effects
+var game_music = new Audio('sounds/background.mp3');
+var match_tone = new Audio('sounds/match.mp3');
+var win_sound = new Audio('sounds/win.mp3');
 
 var first_card_clicked = null;
 var second_card_clicked = null;
@@ -48,8 +56,8 @@ function shuffle() {
         "images/trumpet01.jpg",
         "images/violin01.jpg"
     ];
-    var card_faces_length = card_faces.length;
 
+    var card_faces_length = card_faces.length;
 
     for (var i = 0; i < card_faces_length; i++) {
         var current_length = card_faces.length;
@@ -62,40 +70,48 @@ function shuffle() {
     }
 }
 
-//card clicked function will show face, check if first_card_clicked is null
+//flip card to face, is first_card_clicked null?
 function card_clicked(element) {
     if (!can_click) {
         return;
     }
-    $(element).find('.back').hide();
+    $(element).find('.back').hide(100);
     if (first_card_clicked == null) {
         first_card_clicked = $(element);
+        game_music.play();
     }
     else {
         second_card_clicked = $(element);
         attempts++;
         if (first_card_clicked.find(".front > img").attr('src') == second_card_clicked.find(".front > img").attr('src')) {
+            //hide the matched cards
+            first_card_clicked.find('.front').hide(600);
+            second_card_clicked.find('.front').hide(600);
+            match_tone.play();
             match_counter++;
-            accuracy_check(); // updating accuracy
-            display_stats(); // updating stats display
-            first_card_clicked = null; //reset variable to allow for more clicks
-            second_card_clicked = null; //reset variable to allow for more clicks
-            //checking to see if all matches have been made
+            accuracy_check();
+            display_stats();
+            first_card_clicked = null;
+            second_card_clicked = null;
+            //check for win
             if (match_counter == total_possible_matches) {
-                $(".win").show();
+                $(".win").show(200);
+                win_sound.play();
+                game_music.pause();
+                game_music.currentTime = 0;
             }
         }
         else {
             can_click = false;
-            accuracy_check(); // updating accuracy
-            display_stats(); // updating stats display
-            //wait 2 seconds to flip when cards do not match
+            accuracy_check();
+            display_stats();
+            //not a match flip cards back
             setTimeout(function () {
-                $(first_card_clicked).find('.back').show();
-                $(second_card_clicked).find('.back').show();
+                first_card_clicked.find('.back').show(200);
+                second_card_clicked.find('.back').show(200);
                 first_card_clicked = null;
                 second_card_clicked = null;
-                can_click = true; // setting flag variable
+                can_click = true; // resetting flag variable
             }, 600);
         }
     }
