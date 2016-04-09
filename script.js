@@ -1,5 +1,6 @@
 $(document).ready(function () {
     shuffle();
+
     $(".card").click(function () {
         card_clicked(this);
     });
@@ -12,8 +13,16 @@ $(document).ready(function () {
         reset_stats();
         display_stats();
         $('.card').find('.back').show();
+        game_music.pause();
+        game_music.currentTime = 0;
+        win_sound.pause();
+        win_sound.currentTime = 0;
     });
 });
+//sound effects
+var game_music = new Audio('sounds/background.mp3');
+var match_tone = new Audio('sounds/match.mp3');
+var win_sound = new Audio('sounds/win.mp3');
 
 var first_card_clicked = null;
 var second_card_clicked = null;
@@ -69,6 +78,7 @@ function card_clicked(element) {
     $(element).find('.back').hide(100);
     if (first_card_clicked == null) {
         first_card_clicked = $(element);
+        game_music.play();
     }
     else {
         second_card_clicked = $(element);
@@ -77,6 +87,7 @@ function card_clicked(element) {
             //hide the matched cards
             first_card_clicked.find('.front').hide(600);
             second_card_clicked.find('.front').hide(600);
+            match_tone.play();
             match_counter++;
             accuracy_check();
             display_stats();
@@ -85,6 +96,9 @@ function card_clicked(element) {
             //check for win
             if (match_counter == total_possible_matches) {
                 $(".win").show(200);
+                win_sound.play();
+                game_music.pause();
+                game_music.currentTime = 0;
             }
         }
         else {
@@ -93,8 +107,8 @@ function card_clicked(element) {
             display_stats();
             //not a match flip cards back
             setTimeout(function () {
-                first_card_clicked.find('.back').show();
-                second_card_clicked.find('.back').show();
+                first_card_clicked.find('.back').show(200);
+                second_card_clicked.find('.back').show(200);
                 first_card_clicked = null;
                 second_card_clicked = null;
                 can_click = true; // resetting flag variable
