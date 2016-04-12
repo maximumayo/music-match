@@ -1,6 +1,5 @@
 $(document).ready(function () {
     shuffle();
-
     $(".card").click(function () {
         card_clicked(this);
     });
@@ -8,17 +7,22 @@ $(document).ready(function () {
     $('.reset').click(function () {
         remove_shuffle();
         shuffle();
-        games_played++;
-        $(".win").hide();
         reset_stats();
         display_stats();
-        $('.card').find('.back').show();
+        $(".win").hide();
+        //show the cards again!
+        $(".card").find(".back").css({
+            "-webkit-transform": "perspective( 600px ) rotateY( 0deg )",
+            "transform": "perspective( 600px ) rotateY( 0deg )"
+        });
+        games_played++;
         game_music.pause();
         game_music.currentTime = 0;
         win_sound.pause();
         win_sound.currentTime = 0;
     });
 });
+
 //sound effects
 var game_music = new Audio('sounds/background.mp3');
 var match_tone = new Audio('sounds/match.mp3');
@@ -69,13 +73,19 @@ function shuffle() {
         $('.card:nth-child(' + (j + 1) + ')').prepend('<div class="front"><img src="' + random_face[j] + '"></div>');
     }
 }
-
 //flip card to face, is first_card_clicked null?
 function card_clicked(element) {
     if (!can_click) {
         return;
     }
-    $(element).find('.back').hide(100);
+    $(element).find(".back").css({
+        "-webkit-transform": "perspective( 600px ) rotateY( 180deg )",
+        "transform": "perspective( 600px ) rotateY( -180deg )"
+    });
+    $(element).find(".front").css({
+        "-webkit-transform": "perspective( 600px ) rotateY( 0deg )",
+        "transform": "perspective( 600px ) rotateY( 0deg )"
+    });
     if (first_card_clicked == null) {
         first_card_clicked = $(element);
         game_music.play();
@@ -85,8 +95,9 @@ function card_clicked(element) {
         attempts++;
         if (first_card_clicked.find(".front > img").attr('src') == second_card_clicked.find(".front > img").attr('src')) {
             //hide the matched cards
-            first_card_clicked.find('.front').hide(600);
-            second_card_clicked.find('.front').hide(600);
+            first_card_clicked.find('.front').hide(500);
+            second_card_clicked.find('.front').hide(500);
+
             match_tone.play();
             match_counter++;
             accuracy_check();
@@ -107,12 +118,37 @@ function card_clicked(element) {
             display_stats();
             //not a match flip cards back
             setTimeout(function () {
-                first_card_clicked.find('.back').show(200);
-                second_card_clicked.find('.back').show(200);
+                second_card_clicked.find('.back').css({
+                    "transform": "rotateY(0)",
+                    "transform-style": "preserve-3d",
+                    "transition": "transform .2s linear 0s",
+                    "transition": "-webkit-transform .2s linear 0s"
+                });
+                second_card_clicked.find('.front').css({
+                    "transform": "rotateY(-180deg)",
+                    "transform-style": "preserve-3d",
+                    "transition": "transform .2s linear 0s",
+                    "transition": "-webkit-transform .2s linear 0s"
+
+                });
+                first_card_clicked.find('.back').css({
+                    "transform": "rotateY(0)",
+                    "transform-style": "preserve-3d",
+                    "transition": "transform .2s linear 0s",
+                    "transition": "-webkit-transform .2s linear 0s"
+
+                });
+                first_card_clicked.find('front').css({
+                    "transform": "rotateY(-180deg)",
+                    "transform-style": "preserve-3d",
+                    "transition": "transform .2s linear 0s",
+                    "transition": "-webkit-transform .2s linear 0s"
+
+                });
                 first_card_clicked = null;
                 second_card_clicked = null;
                 can_click = true; // resetting flag variable
-            }, 600);
+            }, 500);
         }
     }
 }
