@@ -71,7 +71,20 @@ header img {
     margin: 2%;
 }
 
-.card img {
+.front > img, .back > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 25px;
+}
+
+.card > .back, .card > .front {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: -webkit-transform .2s linear 0s;
+    transition: transform .2s linear 0s;
     position: absolute;
     top: 0;
     left: 0;
@@ -81,7 +94,18 @@ header img {
     border-radius: 25px;
 }
 
+.card > .back {
+    -webkit-transform: perspective(600px) rotateY(0deg);
+    transform: perspective(600px) rotateY(0deg);
+}
+
+.card > .front {
+    -webkit-transform: perspective(600px) rotateY(180deg);
+    transform: perspective(600px) rotateY(180deg);
+}
+
 /*winning message*/
+
 .win {
     margin: 0 auto;
     color: yellow;
@@ -92,6 +116,7 @@ header img {
     text-align: center;
     top: 50%;
     transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
     background-color: red;
     border-radius: 25px;
 }
