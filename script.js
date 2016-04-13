@@ -28,6 +28,10 @@ var game_music = new Audio('sounds/background.mp3');
 var match_tone = new Audio('sounds/match.mp3');
 var win_sound = new Audio('sounds/win.mp3');
 
+game_music.volume = .7;
+match_tone.volume = .7;
+win_sound.volume = .6;
+
 var first_card_clicked = null;
 var second_card_clicked = null;
 var total_possible_matches = 9;
